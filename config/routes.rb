@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
   
-  get '/auth/facebook/callback' => 'sessions#create'
+  get '/auth/:provider/callback' => 'sessions#create'
 
   root 'welcome#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
