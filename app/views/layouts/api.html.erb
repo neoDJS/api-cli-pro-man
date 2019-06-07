@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProManJS</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'api', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%if logged_in? %>
+      <%= link_to "Home", root_path %> |
+      <%= link_to current_user.name, user_path(current_user) %> | 
+      <%= link_to 'logout', logout_path, method: :post %>
+    <% end %>
+
+    <p id="notice">{{ notice }}</p>
+    <p id="alert">{{ alert }}</p>
+    <main id="main">
+        <%= yield %>
+    </main>
+
+    <script id="projects-template" type="text/x-handlebars-template">
+      <article>
+        <header><h1>Projects List</h1></header>
+        <p>
+            {{#list projects class='blue-color'}}
+                <a href="{{url}}">{{name}}</a>
+            {{/list}} 
+        </p>
+        <footer></footer>
+      </article>
+    </script>
+
+    <script id="project-template" type="text/x-handlebars-template">
+      <article>
+        <header><h1>Project #{{id}} ({{name}})</h1></header>
+        <p><strong>Description:</strong>{{description}}</p>
+        <p>
+            {{#list todos class='blue-color'}}
+                <a href="{{url}}">{{task}}</a>
+            {{/list}} 
+            <p><input name="todo[task]"/> <a href="/projects/{{id}}/todos" >Create todo</a></p>
+        </p>
+        <footer><a href="{{url}}">created {{created_at}} by {{ created_by }}</a></footer>
+      </article>
+    </script>
+
+    <script id="todos-template" type="text/x-handlebars-template">
+      <article>
+        <header><h1>Todos List</h1></header>
+        <p>
+            {{#list workers class='blue-color'}}
+                <a href="{{url}}">{{name}}</a>
+            {{/list}} 
+        </p>
+        <footer></footer>
+      </article>
+    </script>
+
+    <script id="todo-template" type="text/x-handlebars-template">
+      <article>
+        <header><h1>Todo #{{id}} ({{task}})</h1></header>
+        <p>
+            {{#list projects class='blue-color'}}
+                <a href="{{url}}">{{name}}</a>
+            {{/list}} 
+        </p>
+        <footer><a href="{{url}}">created {{created_at}} by {{ created_by }}</a></footer>
+      </article>
+    </script>
+
+    <script id="workers-template" type="text/x-handlebars-template">
+      <article>
+        <header><h1>Workers List</h1></header>
+        <p>
+            {{#list workers class='blue-color'}}
+                <a href="{{url}}">{{name}}</a>
+            {{/list}} 
+        </p>
+        <footer></footer>
+      </article>
+    </script>
+
+    <script id="worker-template" type="text/x-handlebars-template">
+      <article>
+        <header><h1>Worker #{{id}} ({{name}})</h1></header>
+        <p><strong>Ttitle:</strong>{{title}}</p>
+        <br><br>
+        <p>
+            {{#list todos class='blue-color'}}
+                <a href="{{url}}">{{task}}</a>
+            {{/list}} 
+        </p>
+        <footer><a href="{{url}}">created {{created_at}} by {{ created_by }}</a></footer>
+      </article>
+    </script>
+  </body>
+  
+</html>

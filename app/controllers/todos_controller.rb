@@ -43,7 +43,7 @@ class TodosController < ApplicationController
             if @todo.valid?
                 @todo.save
                 format.html { redirect_to project_path(@project.slug), notice: 'Todo was successfully created.' }
-                format.json { render :show, status: :created, location: @todo }                
+                format.json { render json:@todo, status: :created }                
             else
                 format.html { render :new }
                 format.json { render json: @todo.errors, status: :unprocessable_entity }
