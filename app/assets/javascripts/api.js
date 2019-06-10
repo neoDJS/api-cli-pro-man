@@ -14,6 +14,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require jquery-3.4.0
+// //= require underscore
+//= require handlebars-latest
+// //= require_tree .
 //= require promanHandleData
-//= require project
+// //= require project

@@ -2,7 +2,7 @@ class TodosController < ApplicationController
     before_action :require_logged_in
     before_action :set_project
     before_action :set_todo, only:[:show, :edit, :update, :addWorker, :affectation]
-    before_action :set_action_user, only: [:affectation]
+    before_action :set_action_user, only: [:create, :update, :affectation]
 
 
     def addWorker
@@ -43,10 +43,10 @@ class TodosController < ApplicationController
             if @todo.valid?
                 @todo.save
                 format.html { redirect_to project_path(@project.slug), notice: 'Todo was successfully created.' }
-                format.json { render json:@todo, status: :created }                
+                format.json { render json: @todo, status: :created }                
             else
                 format.html { render :new }
-                format.json { render json: @todo.errors, status: :unprocessable_entity }
+                format.json { render json: @todo, status: :unprocessable_entity }
             end
         end
         # respond_to do |format|

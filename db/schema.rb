@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_05_21_180120) do
     t.integer "project_id"
     t.integer "created_by_id"
     t.integer "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_todos_on_created_by_id"
     t.index ["project_id"], name: "index_todos_on_project_id"
     t.index ["updated_by_id"], name: "index_todos_on_updated_by_id"

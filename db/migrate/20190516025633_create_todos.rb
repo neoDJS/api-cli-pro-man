@@ -8,6 +8,7 @@ class CreateTodos < ActiveRecord::Migration[5.2]
       
       t.belongs_to :created_by, references: :users
       t.belongs_to :updated_by, references: :users
+      t.timestamps null: false
     end
   end
 end

@@ -15,9 +15,12 @@
       <%= link_to current_user.name, user_path(current_user) %> | 
       <%= link_to 'logout', logout_path, method: :post %>
     <% end %>
-
-    <p id="notice">{{ notice }}</p>
-    <p id="alert">{{ alert }}</p>
+    
+    <p id="info">
+      <p id="notice"></p>
+      <p id="alert"></p>
+    </p>
+    
     <main id="main">
         <%= yield %>
     </main>
@@ -26,8 +29,8 @@
       <article>
         <header><h1>Projects List</h1></header>
         <p>
-            {{#list projects class='blue-color'}}
-                <a href="{{url}}">{{name}}</a>
+            {{#list projects id='projects' class='blue-color'}}
+                <a href="/projects/{{id}}">{{name}}</a>
             {{/list}} 
         </p>
         <footer></footer>
@@ -39,12 +42,17 @@
         <header><h1>Project #{{id}} ({{name}})</h1></header>
         <p><strong>Description:</strong>{{description}}</p>
         <p>
-            {{#list todos class='blue-color'}}
-                <a href="{{url}}">{{task}}</a>
+            {{#list todos id='todos' class='blue-color'}}
+                <a href="/todos/{{id}}">{{task}}</a>
             {{/list}} 
-            <p><input name="todo[task]"/> <a href="/projects/{{id}}/todos" >Create todo</a></p>
+            <p>
+              <form id="createTodo" action="/projects/{{id}}/todos" method="POST">
+                <input name="todo[task]" id="todo_task"/>
+                <input type="submit" value="Add Todo" />
+              </form>
+            </p>
         </p>
-        <footer><a href="{{url}}">created {{created_at}} by {{ created_by }}</a></footer>
+        <footer><a href="/users/{{created_by.id}}">created {{created_at}} by {{ created_by.name }}</a></footer>
       </article>
     </script>
 
@@ -52,7 +60,7 @@
       <article>
         <header><h1>Todos List</h1></header>
         <p>
-            {{#list workers class='blue-color'}}
+            {{#list workers id='workers' class='blue-color'}}
                 <a href="{{url}}">{{name}}</a>
             {{/list}} 
         </p>
@@ -64,7 +72,7 @@
       <article>
         <header><h1>Todo #{{id}} ({{task}})</h1></header>
         <p>
-            {{#list projects class='blue-color'}}
+            {{#list projects id='projects' class='blue-color'}}
                 <a href="{{url}}">{{name}}</a>
             {{/list}} 
         </p>
@@ -76,7 +84,7 @@
       <article>
         <header><h1>Workers List</h1></header>
         <p>
-            {{#list workers class='blue-color'}}
+            {{#list workers id='workers' class='blue-color'}}
                 <a href="{{url}}">{{name}}</a>
             {{/list}} 
         </p>
@@ -90,7 +98,7 @@
         <p><strong>Ttitle:</strong>{{title}}</p>
         <br><br>
         <p>
-            {{#list todos class='blue-color'}}
+            {{#list todos id='todos' class='blue-color'}}
                 <a href="{{url}}">{{task}}</a>
             {{/list}} 
         </p>
