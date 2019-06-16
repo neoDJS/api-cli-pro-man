@@ -43,6 +43,11 @@ $(document).ready(function() {
         return false;
     });
 
+    $(window).bind('hashchange', function() {
+        //code
+        console.log('hash changed');
+    });
+
     // $(window.location).on('change', function(e) {
     //     console.log('heeeeeeeeeeeeeeeeeeoooooooooooooooo');
     //     if (window.location.href == '/projects') {
@@ -112,7 +117,7 @@ class Projects {
         let template = document.getElementById("projects-template").innerHTML;
         let templateFunction = Handlebars.compile(template);
         let html = templateFunction({ projects: this.list });
-        // window.location.href = `http://localhost:3000/projects`;
+        // window.location.pathname = `/projects`;
         document.getElementById("main").innerHTML = html
     }
 }

@@ -28,10 +28,11 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-google'
-gem 'omniauth-twitter'
+# gem 'omniauth-google'
+# gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'active_model_serializers'
+gem 'foreman'#, '~> 0.82.0'
 # gem 'sproutcore'#, '~> 1.11'
 
 # Use ActiveStorage variant
